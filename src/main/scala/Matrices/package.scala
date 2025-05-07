@@ -45,8 +45,15 @@ package object Matrices {
     tareas.map(_.join())
   }
 
+  // Multiplicación recursiva de matrices
+
   def subMatriz(m:Matriz, i:Int, j:Int, l:Int):Matriz = {
     Vector.tabulate(l, l)((x, y) => m(i+x)(j+y))
+  }
+
+  def sumMatriz(m1: Matriz, m2: Matriz) : Matriz = {
+    val tamaño = m1.length
+    Vector.tabulate(tamaño, tamaño)((i, j) => m1(i)(j) + m2(i)(j))
   }
 
   
