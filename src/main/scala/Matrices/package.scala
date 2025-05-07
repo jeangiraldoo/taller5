@@ -30,6 +30,4 @@ package object Matrices {
     Vector.tabulate(l, l)((x, y) => m(i+x)(j+y))
   }
 
-  
-
 }

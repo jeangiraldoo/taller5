@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taller5.iml" filepath="$PROJECT_DIR$/.idea/modules/taller5.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taller5-build.iml" filepath="$PROJECT_DIR$/.idea/modules/taller5-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taller-5-funcional.iml" filepath="$PROJECT_DIR$/.idea/modules/taller-5-funcional.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/taller-5-funcional-build.iml" filepath="$PROJECT_DIR$/.idea/modules/taller-5-funcional-build.iml" />
     </modules>
   </component>
 </project>
