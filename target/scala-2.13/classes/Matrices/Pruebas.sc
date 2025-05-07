@@ -10,6 +10,7 @@ multMatrizRec(m1, m2)
 multMatrizRecPar(m1, m2)
 
 sumMatriz(m1, m2)
+restaMatriz(m1, m2)
 
 
 val m3 = matrizAlAzar(4, 2)

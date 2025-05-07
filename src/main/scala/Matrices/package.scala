@@ -124,4 +124,9 @@ package object Matrices {
       }
     }
   }
+
+  def restaMatriz(m1: Matriz, m2: Matriz) : Matriz = {
+    val tamaño = m1.length
+    Vector.tabulate(tamaño, tamaño)((i, j) => m1(i)(j) - m2(i)(j))
+  }
 }
