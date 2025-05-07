@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Taller Paralelismo de Tareas y Datos.iml" filepath="$PROJECT_DIR$/.idea/modules/Taller Paralelismo de Tareas y Datos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Taller Paralelismo de Tareas y Datos.Taller Paralelismo de Tareas y Datos-build.iml" filepath="$PROJECT_DIR$/.idea/modules/Taller Paralelismo de Tareas y Datos.Taller Paralelismo de Tareas y Datos-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/taller5.iml" filepath="$PROJECT_DIR$/.idea/modules/taller5.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/taller5-build.iml" filepath="$PROJECT_DIR$/.idea/modules/taller5-build.iml" />
     </modules>
