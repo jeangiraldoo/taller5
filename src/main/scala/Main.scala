@@ -26,7 +26,7 @@ object Main {
 
     println("Resultados")
     println(multMatriz(m1, m2))
-    println(multMatrizParalela(m1, m2))
+    println(multMatrizPar(m1, m2))
     println(multMatrizRec(m1, m2))
     println(multMatrizRecPar(m1, m2))
     println(multStrassen(m1, m2))
