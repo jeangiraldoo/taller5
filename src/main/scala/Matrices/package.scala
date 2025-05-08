@@ -15,6 +15,11 @@ package object Matrices {
     v
   }
 
+  def vectorAlAzar(long:Int, vals:Int):Vector[Int] = {
+    val v = Vector.fill(long){random.nextInt(vals)}
+    v
+  }
+
   def transpuesta(m:Matriz): Matriz = {
     val l = m.length
     Vector.tabulate(l,l)((i,j)=>m(j)(i))
