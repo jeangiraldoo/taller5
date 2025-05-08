@@ -2,6 +2,7 @@ import scala.util.Random
 import common._
 
 import java.util.concurrent.ForkJoinTask
+import scala.collection.parallel.immutable.ParVector
 
 package object Matrices {
 
@@ -21,6 +22,10 @@ package object Matrices {
 
   def prodPunto(v1:Vector[Int], v2:Vector[Int]): Int = {
     (v1 zip v2).map({case(i,j) => (i*j)}).sum
+  }
+
+  def prodPuntoParD(v1:ParVector[Int],v2:ParVector[Int]):Int = {
+    (v1 zip v2).map({case (i,j) => (i*j)}).sum
   }
 
   // Multiplicación estándar de matrices
