@@ -17,13 +17,13 @@ object Main {
     //    )
     //
     //    println(multMatriz(A3, B3))
-    val m1 = matrizAlAzar(512, 2)
-    val m2 = matrizAlAzar(512, 2)
-
-    val m3 = matrizAlAzar(1024, 2)
-    val m4 = matrizAlAzar(1024, 2)
-
-    println(compararAlgoritmos(multMatrizRec, multMatrizRecPar)(m1, m2))
+//    val m1 = matrizAlAzar(512, 2)
+//    val m2 = matrizAlAzar(512, 2)
+//
+//    val m3 = matrizAlAzar(1024, 2)
+//    val m4 = matrizAlAzar(1024, 2)
+//
+//    println(compararAlgoritmos(multMatrizRec, multMatrizRecPar)(m1, m2))
 
 
 //    println(compararProdPunto(4))
