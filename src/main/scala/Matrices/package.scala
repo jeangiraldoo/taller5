@@ -44,15 +44,20 @@ package object Matrices {
   def multMatrizPar(m1:Matriz, m2:Matriz): Matriz = {
     val m2T = transpuesta(m2)
     val n = m1.length
+    val umbral = 16
 
-    val tareas: Vector[ForkJoinTask[Vector[Int]]] = Vector.tabulate(n) { i =>
-      task {
-        Vector.tabulate(n) { j =>
-          prodPunto(m1(i), m2T(j))
+    if (n <= umbral) {
+      multMatriz(m1, m2)
+    } else {
+      val tareas: Vector[ForkJoinTask[Vector[Int]]] = Vector.tabulate(n) { i =>
+        task {
+          Vector.tabulate(n) { j =>
+            prodPunto(m1(i), m2T(j))
+          }
         }
       }
+      tareas.map(_.join())
     }
-    tareas.map(_.join())
   }
 
   // Multiplicación recursiva de matrices
@@ -103,9 +108,10 @@ package object Matrices {
   def multMatrizRecPar(m1: Matriz, m2: Matriz) : Matriz = {
     val n = m1.length
     val mitad = n/2
+    val umbral = 512
 
-    if (n == 1) {
-      Vector(Vector(m1(0)(0) * m2(0)(0)))
+    if (n <= umbral) {
+      multMatriz(m1, m2)
     } else {
       val cuadrantesM1 = dividirEnCuadrantes(m1)
       val cuadrantesM2 = dividirEnCuadrantes(m2)
@@ -170,39 +176,45 @@ package object Matrices {
 
   def multStrassenPar(m1: Matriz, m2: Matriz) : Matriz = {
     val n = m1.length
-    val mitad = n/2
-    val a = dividirEnCuadrantes(m1)
-    val b = dividirEnCuadrantes(m2)
+    val mitad = n / 2
+    val umbral = 34
 
-    val s1 = restaMatriz(b(1), b(3))
-    val s2 = sumMatriz(a(0), a(1))
-    val s3 = sumMatriz(a(2), a(3))
-    val s4 = restaMatriz(b(2), b(0))
-    val s5 = sumMatriz(a(0), a(3))
-    val s6 = sumMatriz(b(0), b(3))
-    val s7 = restaMatriz(a(1), a(3))
-    val s8 = sumMatriz(b(2), b(3))
-    val s9 = restaMatriz(a(0), a(2))
-    val s10 = sumMatriz(b(0), b(1))
+    if (n < umbral) {
+      multStrassen(m1, m2)
+    } else {
+      val a = dividirEnCuadrantes(m1)
+      val b = dividirEnCuadrantes(m2)
 
-    val p1 = task(multMatriz(a(0), s1))
-    val p2 = task(multMatriz(s2, b(3)))
-    val p3 = task(multMatriz(s3, b(0)))
-    val p4 = task(multMatriz(a(3), s4))
-    val p5 = task(multMatriz(s5, s6))
-    val p6 = task(multMatriz(s7, s8))
-    val p7 = task(multMatriz(s9, s10))
+      val s1 = restaMatriz(b(1), b(3))
+      val s2 = sumMatriz(a(0), a(1))
+      val s3 = sumMatriz(a(2), a(3))
+      val s4 = restaMatriz(b(2), b(0))
+      val s5 = sumMatriz(a(0), a(3))
+      val s6 = sumMatriz(b(0), b(3))
+      val s7 = restaMatriz(a(1), a(3))
+      val s8 = sumMatriz(b(2), b(3))
+      val s9 = restaMatriz(a(0), a(2))
+      val s10 = sumMatriz(b(0), b(1))
 
-    val c11 = sumMatriz(restaMatriz(sumMatriz(p5.join(), p4.join()), p2.join()), p6.join())
-    val c12 = sumMatriz(p1.join(), p2.join())
-    val c21 = sumMatriz(p3.join(), p4.join())
-    val c22 = restaMatriz(restaMatriz(sumMatriz(p5.join(), p1.join()), p3.join()), p7.join())
+      val p1 = task(multMatriz(a(0), s1))
+      val p2 = task(multMatriz(s2, b(3)))
+      val p3 = task(multMatriz(s3, b(0)))
+      val p4 = task(multMatriz(a(3), s4))
+      val p5 = task(multMatriz(s5, s6))
+      val p6 = task(multMatriz(s7, s8))
+      val p7 = task(multMatriz(s9, s10))
 
-    Vector.tabulate(n, n) { (i, j) =>
-      if (i < mitad && j < mitad)        c11(i)(j)
-      else if (i < mitad && j >= mitad)  c12(i)(j - mitad)
-      else if (i >= mitad && j < mitad)  c21(i - mitad)(j)
-      else                               c22(i - mitad)(j - mitad)
+      val c11 = sumMatriz(restaMatriz(sumMatriz(p5.join(), p4.join()), p2.join()), p6.join())
+      val c12 = sumMatriz(p1.join(), p2.join())
+      val c21 = sumMatriz(p3.join(), p4.join())
+      val c22 = restaMatriz(restaMatriz(sumMatriz(p5.join(), p1.join()), p3.join()), p7.join())
+
+      Vector.tabulate(n, n) { (i, j) =>
+        if (i < mitad && j < mitad) c11(i)(j)
+        else if (i < mitad && j >= mitad) c12(i)(j - mitad)
+        else if (i >= mitad && j < mitad) c21(i - mitad)(j)
+        else c22(i - mitad)(j - mitad)
+      }
     }
   }
 

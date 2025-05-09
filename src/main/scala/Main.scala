@@ -1,5 +1,6 @@
 import Matrices._
 import Benchmark._
+
 object Main {
   def main(args: Array[String]): Unit = {
     //    println("Hello world!")
@@ -17,19 +18,21 @@ object Main {
     //    )
     //
     //    println(multMatriz(A3, B3))
-//    val m1 = matrizAlAzar(512, 2)
-//    val m2 = matrizAlAzar(512, 2)
-//
-//    val m3 = matrizAlAzar(1024, 2)
-//    val m4 = matrizAlAzar(1024, 2)
-//
-//    println(compararAlgoritmos(multMatrizRec, multMatrizRecPar)(m1, m2))
+    val m1 = matrizAlAzar(1024, 2)
+    val m2 = matrizAlAzar(1024, 2)
 
+    println("matrices:")
+//    println(m1)
+//    println(m2)
+//
+//    println("Resultados")
+//    println(multMatriz(m1, m2))
+//    println(multMatrizPar(m1, m2))
+//    println(multMatrizRec(m1, m2))
+//    println(multMatrizRecPar(m1, m2))
+//    println(multStrassen(m1, m2))
+//    println(multStrassenPar(m1, m2))
 
-//    println(compararProdPunto(4))
-//    println(compararProdPunto(8))
-//    println(compararProdPunto(16))
-//    println(compararProdPunto(32))
-//    println(compararProdPunto(64))
+  println(compararAlgoritmos(multMatrizRec, multMatrizRecPar)(m1, m2))
   }
 }

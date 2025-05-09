@@ -1,7 +1,7 @@
 import Matrices._
 
-val m1 = matrizAlAzar(2, 2)
-val m2 = matrizAlAzar(2, 2)
+val m1 = matrizAlAzar(1024, 2)
+val m2 = matrizAlAzar(1024, 2)
 
 
 multMatriz(m1, m2)
